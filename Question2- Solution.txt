@@ -1,0 +1,27 @@
+#1
+SELECT Shippers.ShipperName, COUNT(*) as TotalDeliveries FROM Orders
+NATURAL JOIN Shippers
+WHERE Shippers.ShipperName = 'Speedy Express';
+#ShipperName	TotalDeliveries
+#Speedy Express	54
+
+#2
+SELECT LastName, Count(*) AS Orders
+FROM Employees NATURAL JOIN Orders
+GROUP BY EmployeeID
+ORDER BY Orders DESC
+LIMIT 1;
+#LastName	Orders
+#Peacock	40
+
+
+#3
+SELECT p.ProductName, sum(od.Quantity) as OrdersAmount
+FROM Customers c NATURAL JOIN ORDERS o NATURAL JOIN OrderDetails od NATURAL JOIN PRODUCTS p
+WHERE c.country = 'Germany'
+GROUP BY p.ProductName 
+ORDER BY OrdersAmount DESC
+LIMIT 1;
+
+#ProductName	OrdersAmount
+#Boston Crab Meat	160
